@@ -190,6 +190,12 @@
 			border-radius: var(--radius-sm);
 		}
 
+		.primary-latency-wrapper {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
 		.latency-indicator {
 			display: inline-flex;
 			align-items: center;
@@ -206,6 +212,7 @@
 			width: 0.5rem;
 			height: 0.5rem;
 			border-radius: var(--radius-full);
+			flex-shrink: 0;
 		}
 
 		.dot-testing {
@@ -228,6 +235,33 @@
 
 		.dot-timeout {
 			background: #ef4444;
+		}
+
+		.btn-retest {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 2rem;
+			padding: 0 0.65rem;
+			gap: 0.35rem;
+			background: var(--color-surface-raised);
+			border: 1px solid var(--color-border);
+			color: var(--color-text-muted);
+			font-size: 0.75rem;
+			font-weight: 600;
+			border-radius: var(--radius-sm);
+			cursor: pointer;
+			transition: all 0.16s ease;
+		}
+
+		.btn-retest:hover {
+			border-color: var(--color-border-strong);
+			color: var(--color-text);
+		}
+
+		.btn-retest[disabled] {
+			opacity: 0.6;
+			cursor: not-allowed;
 		}
 
 		.primary-domain-row {
@@ -256,7 +290,7 @@
 		.primary-summary {
 			font-size: 0.9375rem;
 			color: var(--color-text-muted);
-			line-height: 1.5;
+			line-height: 1.6;
 		}
 
 		.primary-alert {
@@ -279,67 +313,48 @@
 			flex-wrap: wrap;
 		}
 
-		.btn-jump-primary {
-			flex: 1;
-			min-width: 14rem;
+		/* Common Controls */
+		.btn-base {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
 			gap: 0.45rem;
-			height: 3rem;
-			background: var(--color-accent);
-			color: var(--color-accent-ink);
-			font-size: 1rem;
-			font-weight: 700;
-			text-decoration: none;
+			min-height: var(--control-height);
+			padding: 0 1.25rem;
+			font-size: 0.9375rem;
+			font-weight: 600;
 			border-radius: var(--radius-md);
+			text-decoration: none;
+			cursor: pointer;
+			border: 1px solid transparent;
+			box-sizing: border-box;
+			white-space: nowrap;
 			transition: all 0.16s ease;
 		}
 
-		.btn-jump-primary:hover {
+		.btn-primary {
+			background: var(--color-accent);
+			color: var(--color-accent-ink);
+			border-color: var(--color-accent);
+			font-weight: 700;
+		}
+
+		.btn-primary:hover {
 			background: var(--color-accent-soft);
+			border-color: var(--color-accent-soft);
 			transform: translateY(-1px);
 		}
 
-		.btn-copy-primary {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 0.35rem;
-			height: 3rem;
+		.btn-secondary {
 			background: var(--color-surface-raised);
-			border: 1px solid var(--color-border);
+			border-color: var(--color-border);
 			color: var(--color-text);
-			font-size: 0.9rem;
-			font-weight: 600;
-			padding: 0 1.25rem;
-			border-radius: var(--radius-md);
-			cursor: pointer;
-			transition: all 0.16s ease;
 		}
 
-		.btn-copy-primary:hover {
+		.btn-secondary:hover {
 			border-color: var(--color-border-strong);
 			color: var(--color-accent);
-		}
-
-		.btn-retest {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			height: 3rem;
-			width: 3rem;
-			background: var(--color-surface-raised);
-			border: 1px solid var(--color-border);
-			color: var(--color-text-muted);
-			border-radius: var(--radius-md);
-			cursor: pointer;
-			transition: all 0.16s ease;
-		}
-
-		.btn-retest:hover {
-			border-color: var(--color-border-strong);
-			color: var(--color-text);
+			background: var(--color-surface);
 		}
 
 		/* Standby Section */
@@ -351,22 +366,14 @@
 			background: var(--color-surface);
 			border: 1px solid var(--color-border);
 			border-radius: var(--radius-lg);
-			padding: 1.25rem 1.5rem;
+			padding: 1.5rem;
 			margin-bottom: 1.25rem;
 			display: flex;
 			flex-direction: column;
-			gap: 0.85rem;
+			gap: 1rem;
 		}
 
-		.relay-header {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			gap: 0.75rem;
-		}
-
-		.relay-title-group {
+		.relay-top {
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
@@ -378,57 +385,38 @@
 			color: #3b82f6;
 			background: rgb(59 130 246 / 12%);
 			border: 1px solid rgb(59 130 246 / 30%);
-			padding: 0.2rem 0.5rem;
+			padding: 0.2rem 0.55rem;
 			border-radius: var(--radius-sm);
 		}
 
 		.relay-domain-name {
 			font-size: 1.25rem;
-			font-weight: 700;
+			font-weight: 800;
 			color: var(--color-text);
-		}
-
-		.relay-actions {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-		}
-
-		.btn-relay-jump {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.35rem;
-			height: 2.25rem;
-			padding: 0 0.85rem;
-			background: var(--color-surface-raised);
-			border: 1px solid var(--color-border);
-			color: var(--color-text);
-			font-size: 0.8125rem;
-			font-weight: 600;
-			border-radius: var(--radius-sm);
-			text-decoration: none;
-			transition: all 0.16s ease;
-		}
-
-		.btn-relay-jump:hover {
-			border-color: var(--color-accent);
-			color: var(--color-accent);
 		}
 
 		.relay-desc {
-			font-size: 0.875rem;
+			font-size: 0.9375rem;
 			color: var(--color-text-muted);
-			line-height: 1.5;
+			line-height: 1.6;
 		}
 
 		.relay-rationale {
 			background: var(--color-surface-raised);
 			border: 1px solid var(--color-border);
 			border-radius: var(--radius-md);
-			padding: 0.65rem 0.85rem;
+			padding: 0.75rem 1rem;
 			font-size: 0.8125rem;
 			color: var(--color-text-muted);
-			line-height: 1.5;
+			line-height: 1.6;
+		}
+
+		.relay-actions {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			flex-wrap: wrap;
+			padding-top: 0.25rem;
 		}
 
 		/* Anti-Lost Channels Grid */
@@ -448,11 +436,11 @@
 			background: var(--color-surface);
 			border: 1px solid var(--color-border);
 			border-radius: var(--radius-md);
-			padding: 1rem;
+			padding: 1.25rem;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			gap: 0.75rem;
+			gap: 1rem;
 		}
 
 		.antilost-card-top {
@@ -491,7 +479,8 @@
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			height: 2.25rem;
+			min-height: 2.25rem;
+			padding: 0 0.75rem;
 			font-size: 0.8125rem;
 			font-weight: 600;
 			text-decoration: none;
@@ -652,9 +641,17 @@
 						<span class="badge-primary">官方主力 · 全量片库</span>
 					</div>
 
-					<div class="latency-indicator" id="primary-latency">
-						<span class="latency-dot dot-testing" id="latency-dot"></span>
-						<span id="latency-text">连通性探测中...</span>
+					<div class="primary-latency-wrapper">
+						<div class="latency-indicator" id="primary-latency">
+							<span class="latency-dot dot-testing" id="latency-dot"></span>
+							<span id="latency-text">连通性探测中...</span>
+						</div>
+						<button type="button" class="btn-retest" id="retest-btn" title="重新探测" aria-label="重新探测">
+							<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+							</svg>
+							<span>重新探测</span>
+						</button>
 					</div>
 				</div>
 
@@ -674,27 +671,22 @@
 						<line x1="12" y1="8" x2="12" y2="12" />
 						<line x1="12" y1="16" x2="12.01" y2="16" />
 					</svg>
-					<p>检测到您当前网络直连主站受阻（通常由于本地运营商 DNS 污染）。建议使用下方的备用中转站，或参考底部的 DNS 配置指南。</p>
+					<p>连通性探测暂未收到响应（可能是测速被浏览器安全插件拦截或网络延迟较高）。建议直接点击下方按钮尝试访问，或使用备用中转站。</p>
 				</div>
 
 				<div class="primary-actions">
-					<a href="https://javranking.cc" class="btn-jump-primary" id="primary-btn">
-						<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+					<a href="https://javranking.cc" class="btn-base btn-primary" id="primary-btn">
+						<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
 							<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
 						</svg>
 						<span id="primary-btn-text">立即进入主站官网</span>
 					</a>
-					<button type="button" class="btn-copy-primary btn-copy" data-url="https://javranking.cc">
-						<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<button type="button" class="btn-base btn-secondary btn-copy" data-url="https://javranking.cc">
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 							<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
 							<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
 						</svg>
 						<span>复制主站网址</span>
-					</button>
-					<button type="button" class="btn-retest" id="retest-btn" title="重新探测连通性" aria-label="重新探测连通性">
-						<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-						</svg>
 					</button>
 				</div>
 			</div>
@@ -709,35 +701,39 @@
 
 			<!-- Standby Clean Relay: javranking.top -->
 			<div class="relay-card">
-				<div class="relay-header">
-					<div class="relay-title-group">
-						<span class="badge-relay">纯净合规 · 常青跳板</span>
-						<h3 class="relay-domain-name">javranking.top</h3>
-					</div>
-					<div class="relay-actions">
-						<a href="https://javranking.top" class="btn-relay-jump" target="_blank" rel="noopener noreferrer">
-							<span>访问中转站</span>
-							<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-								<polyline points="15 3 21 3 21 9" />
-								<line x1="10" y1="14" x2="21" y2="3" />
-							</svg>
-						</a>
-						<button type="button" class="btn-relay-jump btn-copy" data-url="https://javranking.top">
-							<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-								<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-							</svg>
-							<span>复制</span>
-						</button>
-					</div>
+				<div class="relay-top">
+					<span class="badge-relay">纯净合规 · 常青跳板</span>
+					<span class="primary-protocol">HTTP 301 / 全路由跳转</span>
+				</div>
+
+				<div class="relay-domain-row">
+					<h3 class="relay-domain-name">javranking.top</h3>
 				</div>
 
 				<p class="relay-desc">
 					官方纯净版中转导航。严格符合注册局合规要求，不承载任何敏感成人内容，专职提供全路由安全重定向与最新可用域名发布。
 				</p>
+
 				<div class="relay-rationale">
 					<strong>【为什么是纯净中转？】</strong> 因 .top 注册局合规要求，该域名彻底剔除成人敏感媒体，专职用于导航中转，因此长期不会被注册局封停，是独立于主站之外的永久常青跳板。若主站在部分网络受阻，访问此处即可安全获取主站引导。
+				</div>
+
+				<div class="relay-actions">
+					<a href="https://javranking.top" class="btn-base btn-secondary" target="_blank" rel="noopener noreferrer">
+						<span>前往常青中转站</span>
+						<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+							<polyline points="15 3 21 3 21 9" />
+							<line x1="10" y1="14" x2="21" y2="3" />
+						</svg>
+					</a>
+					<button type="button" class="btn-base btn-secondary btn-copy" data-url="https://javranking.top">
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+							<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+						</svg>
+						<span>复制中转网址</span>
+					</button>
 				</div>
 			</div>
 
@@ -859,10 +855,31 @@
 	<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 	<script>
-		// Ping Latency Measurement for Primary Site Only
-		async function ping(url, timeoutMs = 3500) {
+		// Robust Dual-Probe Latency Measurement
+		async function ping(url, timeoutMs = 6000) {
+			const start = performance.now();
+
+			// 1. Try fetch with CORS first (preferred for CORS-enabled resources)
+			try {
+				const controller = new AbortController();
+				const timer = setTimeout(() => controller.abort(), timeoutMs);
+				const resp = await fetch(url, {
+					method: 'GET',
+					mode: 'cors',
+					cache: 'no-cache',
+					signal: controller.signal
+				});
+				clearTimeout(timer);
+				if (resp.ok || resp.status > 0) {
+					return Math.round(performance.now() - start);
+				}
+			} catch (_err) {
+				// Fetch failed, fall through to image probe
+			}
+
+			// 2. Fallback: Image object probe
 			return new Promise((resolve) => {
-				const start = performance.now();
+				const imgStart = performance.now();
 				const img = new Image();
 				let done = false;
 
@@ -872,13 +889,13 @@
 						img.src = '';
 						resolve(null);
 					}
-				}, timeoutMs);
+				}, Math.max(3000, timeoutMs - (performance.now() - start)));
 
 				img.onload = () => {
 					if (!done) {
 						done = true;
 						clearTimeout(timer);
-						resolve(Math.round(performance.now() - start));
+						resolve(Math.round(performance.now() - imgStart));
 					}
 				};
 
@@ -886,12 +903,12 @@
 					if (!done) {
 						done = true;
 						clearTimeout(timer);
-						const elapsed = Math.round(performance.now() - start);
+						const elapsed = Math.round(performance.now() - imgStart);
 						resolve(elapsed < timeoutMs ? elapsed : null);
 					}
 				};
 
-				img.src = url + '?_t=' + Date.now();
+				img.src = url;
 			});
 		}
 
@@ -900,7 +917,6 @@
 			const text = document.getElementById('latency-text');
 			const alertBox = document.getElementById('primary-alert');
 			const retestBtn = document.getElementById('retest-btn');
-			const primaryBtn = document.getElementById('primary-btn');
 			const primaryBtnText = document.getElementById('primary-btn-text');
 
 			if (dot) dot.className = 'latency-dot dot-testing';
@@ -908,8 +924,13 @@
 			if (alertBox) alertBox.hidden = true;
 			if (retestBtn) retestBtn.disabled = true;
 
-			// Ping Primary Portal only
-			const ms = await ping('https://javranking.cc/brand/favicon-16-v3.png');
+			// Probe attempt 1 with favicon-16-v3.png
+			let ms = await ping('https://javranking.cc/brand/favicon-16-v3.png', 5000);
+
+			// Probe attempt 2: retry once with favicon.ico if attempt 1 was inconclusive
+			if (ms === null) {
+				ms = await ping('https://javranking.cc/favicon.ico', 5000);
+			}
 
 			if (ms !== null) {
 				if (ms < 250) {
@@ -925,9 +946,9 @@
 				if (primaryBtnText) primaryBtnText.textContent = '立即进入主站官网';
 			} else {
 				dot.className = 'latency-dot dot-timeout';
-				text.textContent = '直连受阻 / 超时';
+				text.textContent = '探测超时（可直接尝试访问）';
 				if (alertBox) alertBox.hidden = false;
-				if (primaryBtnText) primaryBtnText.textContent = '尝试访问主站官网';
+				if (primaryBtnText) primaryBtnText.textContent = '直接尝试访问主站官网';
 			}
 
 			if (retestBtn) retestBtn.disabled = false;
