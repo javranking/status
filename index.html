@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<title>JavRanking 官方可用网址发布与状态中心 - 永久防失联导航</title>
+	<meta name="description" content="JavRanking 官方 GitHub 永久发布页与节点状态中心。实时测速并公布当前可用主站 javranking.cc、合规常青中转站 javranking.top 与应急找回通道。">
+	<meta name="theme-color" content="#101114">
+	<meta name="robots" content="index, follow">
+
+	<!-- OpenGraph -->
+	<meta property="og:site_name" content="JavRanking">
+	<meta property="og:title" content="JavRanking 官方可用网址发布与状态中心">
+	<meta property="og:description" content="实时测速优选最快线路，公布官方主站 javranking.cc、常青中转站 javranking.top 及应急找回通道。">
+	<meta property="og:type" content="website">
+
+	<style>
+		:root {
+			--color-canvas: #101114;
+			--color-surface: #181a1f;
+			--color-surface-raised: #202329;
+			--color-text: #f4f5f7;
+			--color-text-muted: #a9adb7;
+			--color-text-faint: #787e89;
+			--color-border: #30343c;
+			--color-border-strong: #646a75;
+			--color-accent: #f4b23b;
+			--color-accent-ink: #17130b;
+			--color-accent-soft: #ffd477;
+			--color-accent-subtle: rgb(244 178 59 / 12%);
+			--radius-sm: 4px;
+			--radius-md: 8px;
+			--radius-lg: 12px;
+			--radius-full: 9999px;
+			--control-height: 2.75rem;
+		}
+
+		*, *::before, *::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background-color: var(--color-canvas);
+			color: var(--color-text);
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Roboto, sans-serif;
+			line-height: 1.5;
+			-webkit-font-smoothing: antialiased;
+			padding: 2rem 1rem 4rem;
+		}
+
+		.container {
+			max-width: 54rem;
+			margin: 0 auto;
+		}
+
+		/* Header */
+		.site-header {
+			margin-bottom: 2rem;
+		}
+
+		.brand-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.brand-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 0.8125rem;
+			font-weight: 600;
+			color: #22c55e;
+			background: rgb(34 197 94 / 12%);
+			border: 1px solid rgb(34 197 94 / 28%);
+			padding: 0.2rem 0.65rem;
+			border-radius: var(--radius-full);
+		}
+
+		.live-dot {
+			width: 0.5rem;
+			height: 0.5rem;
+			border-radius: var(--radius-full);
+			background: #22c55e;
+			box-shadow: 0 0 8px rgb(34 197 94 / 80%);
+			animation: pulse 2s infinite ease-in-out;
+		}
+
+		@keyframes pulse {
+			0%, 100% { transform: scale(1); opacity: 1; }
+			50% { transform: scale(1.3); opacity: 0.5; }
+		}
+
+		.repo-link {
+			font-size: 0.8125rem;
+			color: var(--color-text-faint);
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35rem;
+			border: 1px solid var(--color-border);
+			padding: 0.2rem 0.6rem;
+			border-radius: var(--radius-sm);
+			background: var(--color-surface);
+			transition: all 0.16s ease;
+		}
+
+		.repo-link:hover {
+			border-color: var(--color-border-strong);
+			color: var(--color-accent);
+		}
+
+		.site-title {
+			font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
+			font-weight: 800;
+			line-height: 1.2;
+			margin-bottom: 0.5rem;
+			color: var(--color-text);
+		}
+
+		.site-subtitle {
+			font-size: 1.05rem;
+			color: var(--color-accent-soft);
+			font-weight: 500;
+			margin-bottom: 0.75rem;
+		}
+
+		.site-lead {
+			font-size: 0.9375rem;
+			color: var(--color-text-muted);
+			line-height: 1.6;
+		}
+
+		/* Status Bar */
+		.action-bar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			background: var(--color-surface);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-md);
+			padding: 0.75rem 1rem;
+			margin-bottom: 1.75rem;
+		}
+
+		.status-text {
+			font-size: 0.8125rem;
+			color: var(--color-text-muted);
+		}
+
+		.btn-retest {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.4rem;
+			background: var(--color-surface-raised);
+			border: 1px solid var(--color-border);
+			color: var(--color-text);
+			font-size: 0.8125rem;
+			font-weight: 600;
+			padding: 0.35rem 0.75rem;
+			border-radius: var(--radius-sm);
+			cursor: pointer;
+			transition: all 0.16s ease;
+		}
+
+		.btn-retest:hover {
+			border-color: var(--color-border-strong);
+			color: var(--color-accent);
+		}
+
+		/* Gateway Cards */
+		.section-title {
+			font-size: 1.15rem;
+			font-weight: 700;
+			margin-bottom: 0.4rem;
+		}
+
+		.section-desc {
+			font-size: 0.875rem;
+			color: var(--color-text-muted);
+			margin-bottom: 1rem;
+		}
+
+		.gateway-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+			margin-bottom: 2rem;
+		}
+
+		@media (min-width: 48rem) {
+			.gateway-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.25rem;
+			}
+		}
+
+		.gateway-card {
+			background: var(--color-surface);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-lg);
+			padding: 1.25rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: 1rem;
+			transition: all 0.18s ease;
+		}
+
+		.gateway-card:hover {
+			border-color: var(--color-border-strong);
+			box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 28%);
+		}
+
+		.gateway-card.is-fastest {
+			border-color: var(--color-accent);
+			background: linear-gradient(180deg, var(--color-surface-raised) 0%, var(--color-surface) 100%);
+			box-shadow: 0 0.5rem 2rem rgb(244 178 59 / 12%);
+		}
+
+		.card-header-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.5rem;
+		}
+
+		.tag-group {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.role-tag {
+			font-size: 0.75rem;
+			font-weight: 600;
+			color: var(--color-text-faint);
+			background: var(--color-surface-raised);
+			border: 1px solid var(--color-border);
+			padding: 0.15rem 0.5rem;
+			border-radius: var(--radius-sm);
+		}
+
+		.fastest-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.25rem;
+			font-size: 0.75rem;
+			font-weight: 700;
+			color: var(--color-accent-ink);
+			background: var(--color-accent);
+			padding: 0.15rem 0.5rem;
+			border-radius: var(--radius-sm);
+			animation: pulse-card 2s infinite ease-in-out;
+		}
+
+		@keyframes pulse-card {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.04); }
+		}
+
+		.latency-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35rem;
+			font-size: 0.75rem;
+			font-family: monospace;
+			color: var(--color-text-muted);
+			background: var(--color-surface-raised);
+			border: 1px solid var(--color-border);
+			padding: 0.15rem 0.5rem;
+			border-radius: var(--radius-full);
+			white-space: nowrap;
+		}
+
+		.latency-dot {
+			width: 0.45rem;
+			height: 0.45rem;
+			border-radius: var(--radius-full);
+			background: var(--color-text-faint);
+		}
+
+		.latency-dot.dot-fast { background: #22c55e; }
+		.latency-dot.dot-medium { background: #eab308; }
+		.latency-dot.dot-slow { background: #f97316; }
+		.latency-dot.dot-timeout { background: #ef4444; }
+
+		.domain-title {
+			font-family: "SFMono-Regular", Consolas, monospace;
+			font-size: 1.35rem;
+			font-weight: 700;
+			color: var(--color-text);
+			margin-bottom: 0.25rem;
+		}
+
+		.domain-summary {
+			font-size: 0.875rem;
+			color: var(--color-text-muted);
+			line-height: 1.5;
+			margin-bottom: 0.5rem;
+		}
+
+		.domain-advice {
+			font-size: 0.8125rem;
+			color: var(--color-text-faint);
+			line-height: 1.5;
+		}
+
+		.card-actions {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			margin-top: 0.5rem;
+		}
+
+		.btn-jump {
+			flex: 1;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.4rem;
+			height: var(--control-height);
+			background: var(--color-accent);
+			color: var(--color-accent-ink);
+			font-size: 0.9375rem;
+			font-weight: 700;
+			text-decoration: none;
+			border-radius: var(--radius-md);
+			transition: all 0.16s ease;
+		}
+
+		.btn-jump:hover {
+			background: var(--color-accent-soft);
+			transform: translateY(-1px);
+		}
+
+		.btn-copy {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.35rem;
+			height: var(--control-height);
+			background: var(--color-surface-raised);
+			border: 1px solid var(--color-border);
+			color: var(--color-text);
+			font-size: 0.875rem;
+			font-weight: 600;
+			padding: 0 1rem;
+			border-radius: var(--radius-md);
+			cursor: pointer;
+			transition: all 0.16s ease;
+		}
+
+		.btn-copy:hover {
+			border-color: var(--color-border-strong);
+			color: var(--color-accent);
+		}
+
+		/* Anti-Lost Strip */
+		.antilost-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+			margin-bottom: 2rem;
+		}
+
+		@media (min-width: 48rem) {
+			.antilost-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+
+		.antilost-card {
+			background: var(--color-surface);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-md);
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: 0.75rem;
+		}
+
+		.antilost-card h3 {
+			font-size: 0.9375rem;
+			font-weight: 700;
+			color: var(--color-text);
+			margin-bottom: 0.25rem;
+		}
+
+		.antilost-card p {
+			font-size: 0.8125rem;
+			color: var(--color-text-muted);
+			line-height: 1.5;
+		}
+
+		.antilost-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 2.25rem;
+			font-size: 0.8125rem;
+			font-weight: 600;
+			text-decoration: none;
+			color: var(--color-text);
+			background: var(--color-surface-raised);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-sm);
+			cursor: pointer;
+			transition: all 0.16s ease;
+		}
+
+		.antilost-btn:hover {
+			border-color: var(--color-border-strong);
+			color: var(--color-accent);
+		}
+
+		/* Accordion */
+		.guide-section {
+			border-top: 1px solid var(--color-border);
+			padding-top: 2rem;
+		}
+
+		.accordion-item {
+			background: var(--color-surface);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-md);
+			margin-bottom: 0.75rem;
+			transition: border-color 0.16s ease;
+		}
+
+		.accordion-item[open] {
+			border-color: var(--color-border-strong);
+		}
+
+		.accordion-summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.875rem 1rem;
+			cursor: pointer;
+			font-size: 0.875rem;
+			font-weight: 700;
+			color: var(--color-text);
+			list-style: none;
+			user-select: none;
+		}
+
+		.accordion-summary::-webkit-details-marker { display: none; }
+
+		.accordion-body {
+			padding: 0 1rem 1rem;
+			border-top: 1px solid var(--color-border);
+			padding-top: 0.75rem;
+			font-size: 0.8125rem;
+			color: var(--color-text-muted);
+			line-height: 1.6;
+		}
+
+		.accordion-body p { margin-bottom: 0.5rem; }
+		.accordion-body ul { padding-left: 1.25rem; }
+		.accordion-body li { margin-bottom: 0.35rem; }
+
+		/* Footer */
+		.site-footer {
+			margin-top: 3rem;
+			padding-top: 1.5rem;
+			border-top: 1px solid var(--color-border);
+			text-align: center;
+			font-size: 0.8125rem;
+			color: var(--color-text-faint);
+		}
+
+		.site-footer a {
+			color: var(--color-text-muted);
+			text-decoration: none;
+		}
+
+		.site-footer a:hover {
+			color: var(--color-accent);
+		}
+
+		/* Toast */
+		.toast {
+			position: fixed;
+			bottom: 2rem;
+			left: 50%;
+			transform: translateX(-50%) translateY(20px);
+			background: var(--color-surface-raised);
+			color: var(--color-text);
+			border: 1px solid var(--color-accent);
+			border-radius: var(--radius-md);
+			padding: 0.75rem 1.5rem;
+			font-size: 0.875rem;
+			font-weight: 600;
+			box-shadow: 0 1rem 3rem rgb(0 0 0 / 50%);
+			opacity: 0;
+			pointer-events: none;
+			transition: all 0.2s ease;
+			z-index: 99;
+		}
+
+		.toast.show {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- Header -->
+		<header class="site-header">
+			<div class="brand-row">
+				<div class="brand-badge">
+					<span class="live-dot" aria-hidden="true"></span>
+					<span>实时节点连通性监测</span>
+				</div>
+				<a href="https://github.com/javranking/status" class="repo-link" target="_blank" rel="noopener noreferrer">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+					<span>GitHub 仓库</span>
+				</a>
+			</div>
+			<h1 class="site-title">JavRanking 官方可用网址发布</h1>
+			<p class="site-subtitle">实时测速 · 自动推荐最优线路 · 永久防失联</p>
+			<p class="site-lead">JavRanking 官方唯一去中心化状态中心。系统已为您自动进行本地网络实时连通性探测，推荐优先进入延迟最低的可用线路。</p>
+		</header>
+
+		<!-- Action Bar -->
+		<div class="action-bar">
+			<span class="status-text">测速基于本地浏览器真实网络延迟计算</span>
+			<button type="button" id="retest-btn" class="btn-retest">
+				<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+				<span id="retest-text">重新测速</span>
+			</button>
+		</div>
+
+		<!-- Gateway Section -->
+		<section>
+			<h2 class="section-title">当前可用网址列表</h2>
+			<p class="section-desc">点击即可直接直达。若主站暂时受阻，可切换至常青中转站：</p>
+
+			<div class="gateway-grid">
+				<!-- Card 1: javranking.cc -->
+				<div class="gateway-card" id="card-cc">
+					<div>
+						<div class="card-header-row">
+							<div class="tag-group">
+								<span class="role-tag">官方主力</span>
+								<span class="fastest-pill" id="fastest-cc" hidden>⚡️ 当前网络最优</span>
+							</div>
+							<div class="latency-pill" id="latency-cc">
+								<span class="latency-dot"></span>
+								<span class="latency-text">测速中...</span>
+							</div>
+						</div>
+						<div style="margin-top: 0.75rem;">
+							<div class="domain-title">javranking.cc</div>
+							<p class="domain-summary">官方全功能主站。收录历年神作榜单、女优战力排行、高清预告及冲码多端同步。</p>
+							<p class="domain-advice">首选访问线路。若在本地遇到网络波动打不开，请使用右侧常青中转站。</p>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://javranking.cc" class="btn-jump" target="_blank" rel="noopener noreferrer">
+							<span>🚀 立即直达</span>
+						</a>
+						<button type="button" class="btn-copy" data-url="https://javranking.cc">复制网址</button>
+					</div>
+				</div>
+
+				<!-- Card 2: javranking.top -->
+				<div class="gateway-card" id="card-top">
+					<div>
+						<div class="card-header-row">
+							<div class="tag-group">
+								<span class="role-tag">常青中转</span>
+								<span class="fastest-pill" id="fastest-top" hidden>⚡️ 当前网络最优</span>
+							</div>
+							<div class="latency-pill" id="latency-top">
+								<span class="latency-dot"></span>
+								<span class="latency-text">测速中...</span>
+							</div>
+						</div>
+						<div style="margin-top: 0.75rem;">
+							<div class="domain-title">javranking.top</div>
+							<p class="domain-summary">官方常青导航中转站。纯净中立，无敏感成人内容，受监管合规保护，长期抗封。</p>
+							<p class="domain-advice">备用应急通道。当主域名遭遇运营商阻断时，访问此处即可获得全自动重定向。</p>
+						</div>
+					</div>
+					<div class="card-actions">
+						<a href="https://javranking.top" class="btn-jump" target="_blank" rel="noopener noreferrer">
+							<span>🧭 访问中转</span>
+						</a>
+						<button type="button" class="btn-copy" data-url="https://javranking.top">复制网址</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Anti-Lost Section -->
+		<section>
+			<h2 class="section-title">永久防失联中心</h2>
+			<p class="section-desc">无论未来域名如何更替，保存以下渠道随时回家：</p>
+
+			<div class="antilost-grid">
+				<div class="antilost-card">
+					<div>
+						<h3>GitHub 永久发布页</h3>
+						<p>基于开源全球基础设施托管，脱离单一域名审查。发生变动时第一时间广播更新。</p>
+					</div>
+					<a href="https://github.com/javranking/status" class="antilost-btn" target="_blank" rel="noopener noreferrer">访问 GitHub 仓库</a>
+				</div>
+				<div class="antilost-card">
+					<div>
+						<h3>官方应急找回邮箱</h3>
+						<p>若所有网址均失效，发邮件至官方邮箱，系统秒级自动回复当前最新网址。</p>
+					</div>
+					<button type="button" class="antilost-btn" id="email-btn" data-email="contact@javranking.cc">复制应急邮箱</button>
+				</div>
+				<div class="antilost-card">
+					<div>
+						<h3>一键收藏本页</h3>
+						<p>电脑端按快捷键 Ctrl+D（Mac 按 Cmd+D）；手机端点击浏览器菜单“添加到主屏幕”。</p>
+					</div>
+					<button type="button" class="antilost-btn" id="bookmark-btn">收藏本发布页</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Troubleshooting Section -->
+		<section class="guide-section">
+			<h2 class="section-title">进阶：网络排障与安全指南</h2>
+			<p class="section-desc">遇到网页打不开或连接被重置？展开查看优化技巧：</p>
+
+			<div class="accordion-list">
+				<details class="accordion-item">
+					<summary class="accordion-summary">
+						<span>为什么站点在部分地区会打不开？</span>
+						<span>▾</span>
+					</summary>
+					<div class="accordion-body">
+						<p>95% 以上的访问失败并非服务器瘫痪，而是本地运营商（如电信、联通、移动）针对成人影视关键词实施的 <strong>DNS 污染</strong>（解析到错误 IP）或 <strong>SNI 握手阻断</strong>（TLS 握手时强制重置连接）。</p>
+						<p>解决办法：配置下方推荐的安全纯净公共 DNS 并开启浏览器 DoH，或使用代理工具选择亚太低延迟节点。</p>
+					</div>
+				</details>
+
+				<details class="accordion-item">
+					<summary class="accordion-summary">
+						<span>推荐方案：配置公共纯净 DNS 并开启安全 DNS (DoH)</span>
+						<span>▾</span>
+					</summary>
+					<div class="accordion-body">
+						<p><strong>推荐公共安全 DNS：</strong></p>
+						<ul>
+							<li>Google Public DNS：<code>8.8.8.8</code> / <code>8.8.4.4</code>（DoH: <code>https://dns.google/dns-query</code>）</li>
+							<li>阿里公共 DNS：<code>223.5.5.5</code> / <code>223.6.6.6</code>（DoH: <code>https://dns.alidns.com/dns-query</code>）</li>
+							<li>114 DNS：<code>114.114.114.114</code> / <code>114.114.115.115</code></li>
+						</ul>
+						<p style="margin-top: 0.5rem;"><strong>浏览器开启安全 DNS（只需两步）：</strong></p>
+						<p>Chrome / Edge 打开「设置」->「隐私和安全性」->「安全」-> 启用「使用安全 DNS」-> 选择 Google 或自定义阿里 DNS。</p>
+					</div>
+				</details>
+
+				<details class="accordion-item">
+					<summary class="accordion-summary">
+						<span>官方严正防伪与防诈骗声明</span>
+						<span>▾</span>
+					</summary>
+					<div class="accordion-body">
+						<ul>
+							<li><strong>零账号收费</strong>：JavRanking 为纯静态公开榜单，无注册登录、无充值打赏、无 VIP 会员，所有内容 100% 免费公开。</li>
+							<li><strong>零流氓弹窗</strong>：绝不投放欺诈弹窗、恶意跳转、诱导下载未知 App、博彩等违规内容。</li>
+							<li><strong>警惕假冒李鬼</strong>：任何以 JavRanking 名义要求充值付费或加私聊转账的网站均为假冒钓鱼，请立即关闭并举报！</li>
+						</ul>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="site-footer">
+			<p>JavRanking 官方去中心化状态中心 · <a href="https://javranking.cc">javranking.cc</a> · <a href="https://javranking.top">javranking.top</a> · © 2026</p>
+		</footer>
+	</div>
+
+	<!-- Toast -->
+	<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+	<script>
+		// Ping Latency Measurement
+		async function ping(url, timeoutMs = 3500) {
+			return new Promise((resolve) => {
+				const start = performance.now();
+				const img = new Image();
+				let done = false;
+
+				const timer = setTimeout(() => {
+					if (!done) {
+						done = true;
+						img.src = '';
+						resolve(null);
+					}
+				}, timeoutMs);
+
+				img.onload = () => {
+					if (!done) {
+						done = true;
+						clearTimeout(timer);
+						resolve(Math.round(performance.now() - start));
+					}
+				};
+
+				img.onerror = () => {
+					if (!done) {
+						done = true;
+						clearTimeout(timer);
+						const elapsed = Math.round(performance.now() - start);
+						resolve(elapsed < timeoutMs ? elapsed : null);
+					}
+				};
+
+				img.src = url + '?_t=' + Date.now();
+			});
+		}
+
+		async function runTest() {
+			const btn = document.getElementById('retest-btn');
+			const label = document.getElementById('retest-text');
+			if (btn) btn.disabled = true;
+			if (label) label.textContent = '测速中...';
+
+			document.getElementById('fastest-cc').hidden = true;
+			document.getElementById('fastest-top').hidden = true;
+			document.getElementById('card-cc').classList.remove('is-fastest');
+			document.getElementById('card-top').classList.remove('is-fastest');
+
+			// Ping both nodes in parallel
+			const [msCc, msTop] = await Promise.all([
+				ping('https://javranking.cc/brand/favicon-16-v3.png'),
+				ping('https://javranking.top/favicon.ico')
+			]);
+
+			updateNode('cc', msCc);
+			updateNode('top', msTop);
+
+			// Determine fastest
+			if (msCc !== null && (msTop === null || msCc <= msTop)) {
+				document.getElementById('card-cc').classList.add('is-fastest');
+				document.getElementById('fastest-cc').hidden = false;
+			} else if (msTop !== null) {
+				document.getElementById('card-top').classList.add('is-fastest');
+				document.getElementById('fastest-top').hidden = false;
+			}
+
+			if (btn) btn.disabled = false;
+			if (label) label.textContent = '重新测速';
+		}
+
+		function updateNode(id, ms) {
+			const pill = document.getElementById('latency-' + id);
+			if (!pill) return;
+			const dot = pill.querySelector('.latency-dot');
+			const text = pill.querySelector('.latency-text');
+
+			dot.className = 'latency-dot';
+
+			if (ms !== null) {
+				if (ms < 250) {
+					dot.classList.add('dot-fast');
+					text.textContent = ms + ' ms · 极速';
+				} else if (ms < 600) {
+					dot.classList.add('dot-medium');
+					text.textContent = ms + ' ms · 良好';
+				} else {
+					dot.classList.add('dot-slow');
+					text.textContent = ms + ' ms · 较慢';
+				}
+			} else {
+				dot.classList.add('dot-timeout');
+				text.textContent = '访问受阻';
+			}
+		}
+
+		// Run test on load
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', runTest);
+		} else {
+			runTest();
+		}
+
+		document.getElementById('retest-btn')?.addEventListener('click', runTest);
+
+		// Toast
+		function showToast(msg) {
+			const t = document.getElementById('toast');
+			if (!t) return;
+			t.textContent = msg;
+			t.classList.add('show');
+			setTimeout(() => t.classList.remove('show'), 3000);
+		}
+
+		// Copy Buttons
+		document.querySelectorAll('.btn-copy').forEach(btn => {
+			btn.addEventListener('click', async () => {
+				const url = btn.dataset.url;
+				if (!url) return;
+				try {
+					await navigator.clipboard.writeText(url);
+					showToast('已复制网址到剪贴板：' + url);
+				} catch (err) {
+					showToast('复制失败，请手动长按复制');
+				}
+			});
+		});
+
+		// Copy Email
+		document.getElementById('email-btn')?.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText('contact@javranking.cc');
+				showToast('已复制官方应急邮箱：contact@javranking.cc');
+			} catch (err) {
+				showToast('复制失败，邮箱为 contact@javranking.cc');
+			}
+		});
+
+		// Bookmark
+		document.getElementById('bookmark-btn')?.addEventListener('click', () => {
+			showToast('请按 Ctrl+D（Mac 按 Cmd+D）将本发布页加入收藏夹以防失联！');
+		});
+	</script>
+</body>
+</html>
