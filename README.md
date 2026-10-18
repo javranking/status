@@ -3,7 +3,7 @@
 
 > **Status: All Systems Operational · 所有节点正常运行**  
 > **Official Repository / 官方唯一防失联发布仓库**: [github.com/javranking/status](https://github.com/javranking/status)  
-> **GitHub Pages / 网页版在线测速**: [javranking.github.io/status](https://javranking.github.io/status/)
+> **GitHub Pages / 网页版主站连通性监测**: [javranking.github.io/status](https://javranking.github.io/status/)
 
 ---
 
