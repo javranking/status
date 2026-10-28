@@ -13,7 +13,7 @@
 | :--- | :--- | :--- | :--- |
 | **官方主力主站 (Primary)** | **[https://javranking.cc](https://javranking.cc)** | **日常首选主站**：全量权威排行榜、神作探索、4K预告与冲码跨端标记 | 🟢 正常服务 (Operational) |
 | **官方常青中转站 (Relay)** | **[https://javranking.top](https://javranking.top)** | **合规常青中转**：纯净无敏感内容，专职全路由安全重定向，长期抗封 | 🟢 长期在线 (Clean Gateway) |
-| **应急找回邮箱 (Email)** | **[contact@javranking.cc](mailto:contact@javranking.cc)** | **离线应急通道**：发送任意邮件，系统秒级自动回复最新可用网址 | 🟢 自动回复 (Auto-Reply) |
+| **应急找回邮箱 (Email)** | **[addr@javranking.cc](mailto:addr@javranking.cc)** | **离线应急通道**：发送任意邮件，系统秒级自动回复最新可用网址 | 🟢 自动回复 (Auto-Reply) |
 
 ---
 

@@ -767,7 +767,7 @@
 								<h4>官方应急找回邮箱</h4>
 							</div>
 						</div>
-						<p style="margin-top: 0.5rem;">发送任意邮件至 contact@javranking.cc，系统秒级自动回复最新可用主站及备用入口。</p>
+						<p style="margin-top: 0.5rem;">发送任意邮件至 addr@javranking.cc，系统秒级自动回复最新可用主站及备用入口。</p>
 					</div>
 					<button type="button" class="antilost-btn" id="email-btn">复制官方邮箱</button>
 				</div>
@@ -989,10 +989,10 @@
 		// Copy Email
 		document.getElementById('email-btn')?.addEventListener('click', async () => {
 			try {
-				await navigator.clipboard.writeText('contact@javranking.cc');
-				showToast('已复制官方应急邮箱：contact@javranking.cc');
+				await navigator.clipboard.writeText('addr@javranking.cc');
+				showToast('已复制官方应急邮箱：addr@javranking.cc');
 			} catch (err) {
-				showToast('复制失败，邮箱为 contact@javranking.cc');
+				showToast('复制失败，邮箱为 addr@javranking.cc');
 			}
 		});
 
